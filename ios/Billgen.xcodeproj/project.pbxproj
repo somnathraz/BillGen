@@ -11,12 +11,18 @@
 		13B07FBC1A68108700A75B9A /* AppDelegate.mm in Sources */ = {isa = PBXBuildFile; fileRef = 13B07FB01A68108700A75B9A /* AppDelegate.mm */; };
 		13B07FBF1A68108700A75B9A /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 13B07FB51A68108700A75B9A /* Images.xcassets */; };
 		13B07FC11A68108700A75B9A /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 13B07FB71A68108700A75B9A /* main.m */; };
+		3BC6E1403E8E42DD92575164 /* DMSans_Light.ttf in Resources */ = {isa = PBXBuildFile; fileRef = F3C66DBA79C349D9BE1D409C /* DMSans_Light.ttf */; };
+		4324B0902F66458FA62F71D9 /* DMSans_SemiBold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 8CAF8D800D1F4944A9486A25 /* DMSans_SemiBold.ttf */; };
 		475B79A2E2F5347D8E68390E /* libPods-Billgen-BillgenTests.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 12FBF708DF730E90FF2E727E /* libPods-Billgen-BillgenTests.a */; };
-		61EF6A13EB6B34785B1DFB57 /* ExpoModulesProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = F3C8C618A52D1D2091F85CE6 /* ExpoModulesProvider.swift */; };
+		59D918CC39CA435588E8C434 /* DMSans_Regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = C9F0C35ECEFD4D2B845C6EA8 /* DMSans_Regular.ttf */; };
 		81AB9BB82411601600AC10FF /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 81AB9BB72411601600AC10FF /* LaunchScreen.storyboard */; };
+		8FA40FBFE5A540BDAD1A2396 /* DMSans_Thin.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 4B875D30A58D4061B59C6E5D /* DMSans_Thin.ttf */; };
+		9B1BE8329475400FA4605D85 /* DMSans_Medium.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 115CC89D15BB41F3ABC1A6E1 /* DMSans_Medium.ttf */; };
 		9EE40E0A0CCB439FF9ABBDB1 /* PrivacyInfo.xcprivacy in Resources */ = {isa = PBXBuildFile; fileRef = 6E3F437D1CB9B9E0052AA454 /* PrivacyInfo.xcprivacy */; };
-		DAD8C6EBDFD05B4CC3DA35DB /* ExpoModulesProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = 93E3992990C108B29A8F1383 /* ExpoModulesProvider.swift */; };
+		9FB835EDB52B4CA2A1C90DD2 /* DMSans_Black.ttf in Resources */ = {isa = PBXBuildFile; fileRef = B1E9A4B661B644AB9D17B3DB /* DMSans_Black.ttf */; };
+		D48DDF83DF064187A400368D /* DMSans_Bold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = EBC943E3AAFD4F6081B183A3 /* DMSans_Bold.ttf */; };
 		E6AE97B439B0BE3A030C1992 /* libPods-Billgen.a in Frameworks */ = {isa = PBXBuildFile; fileRef = B52A81A6F55694AC3579D0A9 /* libPods-Billgen.a */; };
+		F9DD2CA73D1D46E4B470F7BB /* DMSans_ExtraBold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 29418CE86EF84638AA737B8E /* DMSans_ExtraBold.ttf */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -33,6 +39,7 @@
 		00E356EE1AD99517003FC87E /* BillgenTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = BillgenTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		00E356F11AD99517003FC87E /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		00E356F21AD99517003FC87E /* BillgenTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = BillgenTests.m; sourceTree = "<group>"; };
+		115CC89D15BB41F3ABC1A6E1 /* DMSans_Medium.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = DMSans_Medium.ttf; path = ../assets/fonts/DMSans_Medium.ttf; sourceTree = "<group>"; };
 		12FBF708DF730E90FF2E727E /* libPods-Billgen-BillgenTests.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-Billgen-BillgenTests.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		13B07F961A680F5B00A75B9A /* Billgen.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Billgen.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		13B07FAF1A68108700A75B9A /* AppDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = AppDelegate.h; path = Billgen/AppDelegate.h; sourceTree = "<group>"; };
@@ -41,16 +48,21 @@
 		13B07FB61A68108700A75B9A /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = Info.plist; path = Billgen/Info.plist; sourceTree = "<group>"; };
 		13B07FB71A68108700A75B9A /* main.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = main.m; path = Billgen/main.m; sourceTree = "<group>"; };
 		13B07FB81A68108700A75B9A /* PrivacyInfo.xcprivacy */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = PrivacyInfo.xcprivacy; path = Billgen/PrivacyInfo.xcprivacy; sourceTree = "<group>"; };
+		29418CE86EF84638AA737B8E /* DMSans_ExtraBold.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = DMSans_ExtraBold.ttf; path = ../assets/fonts/DMSans_ExtraBold.ttf; sourceTree = "<group>"; };
 		3B4392A12AC88292D35C810B /* Pods-Billgen.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Billgen.debug.xcconfig"; path = "Target Support Files/Pods-Billgen/Pods-Billgen.debug.xcconfig"; sourceTree = "<group>"; };
+		4B875D30A58D4061B59C6E5D /* DMSans_Thin.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = DMSans_Thin.ttf; path = ../assets/fonts/DMSans_Thin.ttf; sourceTree = "<group>"; };
 		5709B34CF0A7D63546082F79 /* Pods-Billgen.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Billgen.release.xcconfig"; path = "Target Support Files/Pods-Billgen/Pods-Billgen.release.xcconfig"; sourceTree = "<group>"; };
 		5B7EB9410499542E8C5724F5 /* Pods-Billgen-BillgenTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Billgen-BillgenTests.debug.xcconfig"; path = "Target Support Files/Pods-Billgen-BillgenTests/Pods-Billgen-BillgenTests.debug.xcconfig"; sourceTree = "<group>"; };
-		6E3F437D1CB9B9E0052AA454 /* PrivacyInfo.xcprivacy */ = {isa = PBXFileReference; includeInIndex = 1; name = PrivacyInfo.xcprivacy; path = Billgen/PrivacyInfo.xcprivacy; sourceTree = "<group>"; };
+		6E3F437D1CB9B9E0052AA454 /* PrivacyInfo.xcprivacy */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xml; name = PrivacyInfo.xcprivacy; path = Billgen/PrivacyInfo.xcprivacy; sourceTree = "<group>"; };
 		81AB9BB72411601600AC10FF /* LaunchScreen.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; name = LaunchScreen.storyboard; path = Billgen/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		89C6BE57DB24E9ADA2F236DE /* Pods-Billgen-BillgenTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Billgen-BillgenTests.release.xcconfig"; path = "Target Support Files/Pods-Billgen-BillgenTests/Pods-Billgen-BillgenTests.release.xcconfig"; sourceTree = "<group>"; };
-		93E3992990C108B29A8F1383 /* ExpoModulesProvider.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = ExpoModulesProvider.swift; path = "Pods/Target Support Files/Pods-Billgen-BillgenTests/ExpoModulesProvider.swift"; sourceTree = "<group>"; };
+		8CAF8D800D1F4944A9486A25 /* DMSans_SemiBold.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = DMSans_SemiBold.ttf; path = ../assets/fonts/DMSans_SemiBold.ttf; sourceTree = "<group>"; };
+		B1E9A4B661B644AB9D17B3DB /* DMSans_Black.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = DMSans_Black.ttf; path = ../assets/fonts/DMSans_Black.ttf; sourceTree = "<group>"; };
 		B52A81A6F55694AC3579D0A9 /* libPods-Billgen.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-Billgen.a"; sourceTree = BUILT_PRODUCTS_DIR; };
+		C9F0C35ECEFD4D2B845C6EA8 /* DMSans_Regular.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = DMSans_Regular.ttf; path = ../assets/fonts/DMSans_Regular.ttf; sourceTree = "<group>"; };
+		EBC943E3AAFD4F6081B183A3 /* DMSans_Bold.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = DMSans_Bold.ttf; path = ../assets/fonts/DMSans_Bold.ttf; sourceTree = "<group>"; };
 		ED297162215061F000B7C4FE /* JavaScriptCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = JavaScriptCore.framework; path = System/Library/Frameworks/JavaScriptCore.framework; sourceTree = SDKROOT; };
-		F3C8C618A52D1D2091F85CE6 /* ExpoModulesProvider.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = ExpoModulesProvider.swift; path = "Pods/Target Support Files/Pods-Billgen/ExpoModulesProvider.swift"; sourceTree = "<group>"; };
+		F3C66DBA79C349D9BE1D409C /* DMSans_Light.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = DMSans_Light.ttf; path = ../assets/fonts/DMSans_Light.ttf; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -131,7 +143,7 @@
 				83CBBA001A601CBA00E9B192 /* Products */,
 				2D16E6871FA4F8E400B85C8A /* Frameworks */,
 				BBD78D7AC51CEA395F1C20DB /* Pods */,
-				8BE5ABAB804F5D6CF2D12437 /* ExpoModulesProviders */,
+				CAD6911CF5D44BCD8009FFE2 /* Resources */,
 			);
 			indentWidth = 2;
 			sourceTree = "<group>";
@@ -147,15 +159,6 @@
 			name = Products;
 			sourceTree = "<group>";
 		};
-		8BE5ABAB804F5D6CF2D12437 /* ExpoModulesProviders */ = {
-			isa = PBXGroup;
-			children = (
-				DB0A1C8B1F5A6A587E8E2771 /* Billgen */,
-				BE16A53F0D79F42F44065A39 /* BillgenTests */,
-			);
-			name = ExpoModulesProviders;
-			sourceTree = "<group>";
-		};
 		BBD78D7AC51CEA395F1C20DB /* Pods */ = {
 			isa = PBXGroup;
 			children = (
@@ -167,20 +170,19 @@
 			path = Pods;
 			sourceTree = "<group>";
 		};
-		BE16A53F0D79F42F44065A39 /* BillgenTests */ = {
+		CAD6911CF5D44BCD8009FFE2 /* Resources */ = {
 			isa = PBXGroup;
 			children = (
-				93E3992990C108B29A8F1383 /* ExpoModulesProvider.swift */,
+				B1E9A4B661B644AB9D17B3DB /* DMSans_Black.ttf */,
+				EBC943E3AAFD4F6081B183A3 /* DMSans_Bold.ttf */,
+				29418CE86EF84638AA737B8E /* DMSans_ExtraBold.ttf */,
+				F3C66DBA79C349D9BE1D409C /* DMSans_Light.ttf */,
+				115CC89D15BB41F3ABC1A6E1 /* DMSans_Medium.ttf */,
+				C9F0C35ECEFD4D2B845C6EA8 /* DMSans_Regular.ttf */,
+				8CAF8D800D1F4944A9486A25 /* DMSans_SemiBold.ttf */,
+				4B875D30A58D4061B59C6E5D /* DMSans_Thin.ttf */,
 			);
-			name = BillgenTests;
-			sourceTree = "<group>";
-		};
-		DB0A1C8B1F5A6A587E8E2771 /* Billgen */ = {
-			isa = PBXGroup;
-			children = (
-				F3C8C618A52D1D2091F85CE6 /* ExpoModulesProvider.swift */,
-			);
-			name = Billgen;
+			name = Resources;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -191,7 +193,6 @@
 			buildConfigurationList = 00E357021AD99517003FC87E /* Build configuration list for PBXNativeTarget "BillgenTests" */;
 			buildPhases = (
 				A55EABD7B0C7F3A422A6CC61 /* [CP] Check Pods Manifest.lock */,
-				670E0804ED50254F9DBFE8BC /* [Expo] Configure project */,
 				00E356EA1AD99517003FC87E /* Sources */,
 				00E356EB1AD99517003FC87E /* Frameworks */,
 				00E356EC1AD99517003FC87E /* Resources */,
@@ -213,7 +214,6 @@
 			buildConfigurationList = 13B07F931A680F5B00A75B9A /* Build configuration list for PBXNativeTarget "Billgen" */;
 			buildPhases = (
 				C38B50BA6285516D6DCD4F65 /* [CP] Check Pods Manifest.lock */,
-				B4D254DC4B9834DEB274EF2D /* [Expo] Configure project */,
 				13B07F871A680F5B00A75B9A /* Sources */,
 				13B07F8C1A680F5B00A75B9A /* Frameworks */,
 				13B07F8E1A680F5B00A75B9A /* Resources */,
@@ -281,6 +281,14 @@
 				81AB9BB82411601600AC10FF /* LaunchScreen.storyboard in Resources */,
 				13B07FBF1A68108700A75B9A /* Images.xcassets in Resources */,
 				9EE40E0A0CCB439FF9ABBDB1 /* PrivacyInfo.xcprivacy in Resources */,
+				9FB835EDB52B4CA2A1C90DD2 /* DMSans_Black.ttf in Resources */,
+				D48DDF83DF064187A400368D /* DMSans_Bold.ttf in Resources */,
+				F9DD2CA73D1D46E4B470F7BB /* DMSans_ExtraBold.ttf in Resources */,
+				3BC6E1403E8E42DD92575164 /* DMSans_Light.ttf in Resources */,
+				9B1BE8329475400FA4605D85 /* DMSans_Medium.ttf in Resources */,
+				59D918CC39CA435588E8C434 /* DMSans_Regular.ttf in Resources */,
+				4324B0902F66458FA62F71D9 /* DMSans_SemiBold.ttf in Resources */,
+				8FA40FBFE5A540BDAD1A2396 /* DMSans_Thin.ttf in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -320,25 +328,6 @@
 			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-Billgen/Pods-Billgen-frameworks.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
-		670E0804ED50254F9DBFE8BC /* [Expo] Configure project */ = {
-			isa = PBXShellScriptBuildPhase;
-			alwaysOutOfDate = 1;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputFileListPaths = (
-			);
-			inputPaths = (
-			);
-			name = "[Expo] Configure project";
-			outputFileListPaths = (
-			);
-			outputPaths = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "# This script configures Expo modules and generates the modules provider file.\nbash -l -c \"./Pods/Target\\ Support\\ Files/Pods-Billgen-BillgenTests/expo-configure-project.sh\"\n";
-		};
 		A55EABD7B0C7F3A422A6CC61 /* [CP] Check Pods Manifest.lock */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
@@ -360,25 +349,6 @@
 			shellPath = /bin/sh;
 			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
 			showEnvVarsInLog = 0;
-		};
-		B4D254DC4B9834DEB274EF2D /* [Expo] Configure project */ = {
-			isa = PBXShellScriptBuildPhase;
-			alwaysOutOfDate = 1;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputFileListPaths = (
-			);
-			inputPaths = (
-			);
-			name = "[Expo] Configure project";
-			outputFileListPaths = (
-			);
-			outputPaths = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "# This script configures Expo modules and generates the modules provider file.\nbash -l -c \"./Pods/Target\\ Support\\ Files/Pods-Billgen/expo-configure-project.sh\"\n";
 		};
 		C38B50BA6285516D6DCD4F65 /* [CP] Check Pods Manifest.lock */ = {
 			isa = PBXShellScriptBuildPhase;
@@ -461,7 +431,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				00E356F31AD99517003FC87E /* BillgenTests.m in Sources */,
-				DAD8C6EBDFD05B4CC3DA35DB /* ExpoModulesProvider.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -471,7 +440,6 @@
 			files = (
 				13B07FBC1A68108700A75B9A /* AppDelegate.mm in Sources */,
 				13B07FC11A68108700A75B9A /* main.m in Sources */,
-				61EF6A13EB6B34785B1DFB57 /* ExpoModulesProvider.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -507,7 +475,6 @@
 					"-lc++",
 					"$(inherited)",
 				);
-				OTHER_SWIFT_FLAGS = "$(inherited) -D EXPO_CONFIGURATION_DEBUG";
 				PRODUCT_BUNDLE_IDENTIFIER = "org.reactjs.native.example.$(PRODUCT_NAME:rfc1034identifier)";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Billgen.app/Billgen";
@@ -532,7 +499,6 @@
 					"-lc++",
 					"$(inherited)",
 				);
-				OTHER_SWIFT_FLAGS = "$(inherited) -D EXPO_CONFIGURATION_RELEASE";
 				PRODUCT_BUNDLE_IDENTIFIER = "org.reactjs.native.example.$(PRODUCT_NAME:rfc1034identifier)";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Billgen.app/Billgen";
@@ -558,7 +524,6 @@
 					"-ObjC",
 					"-lc++",
 				);
-				OTHER_SWIFT_FLAGS = "$(inherited) -D EXPO_CONFIGURATION_DEBUG";
 				PRODUCT_BUNDLE_IDENTIFIER = "org.reactjs.native.example.$(PRODUCT_NAME:rfc1034identifier)";
 				PRODUCT_NAME = Billgen;
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
@@ -585,7 +550,6 @@
 					"-ObjC",
 					"-lc++",
 				);
-				OTHER_SWIFT_FLAGS = "$(inherited) -D EXPO_CONFIGURATION_RELEASE";
 				PRODUCT_BUNDLE_IDENTIFIER = "org.reactjs.native.example.$(PRODUCT_NAME:rfc1034identifier)";
 				PRODUCT_NAME = Billgen;
 				SWIFT_VERSION = 5.0;
@@ -666,10 +630,7 @@
 					"-DFOLLY_CFG_NO_COROUTINES=1",
 					"-DFOLLY_HAVE_CLOCK_GETTIME=1",
 				);
-				OTHER_LDFLAGS = (
-					"$(inherited)",
-					" ",
-				);
+				OTHER_LDFLAGS = "$(inherited)  ";
 				REACT_NATIVE_PATH = "${PODS_ROOT}/../../node_modules/react-native";
 				SDKROOT = iphoneos;
 				SWIFT_ACTIVE_COMPILATION_CONDITIONS = "$(inherited) DEBUG";
@@ -742,10 +703,7 @@
 					"-DFOLLY_CFG_NO_COROUTINES=1",
 					"-DFOLLY_HAVE_CLOCK_GETTIME=1",
 				);
-				OTHER_LDFLAGS = (
-					"$(inherited)",
-					" ",
-				);
+				OTHER_LDFLAGS = "$(inherited)  ";
 				REACT_NATIVE_PATH = "${PODS_ROOT}/../../node_modules/react-native";
 				SDKROOT = iphoneos;
 				USE_HERMES = true;
