@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "234843807306",
+    "project_id": "billgen-fae9d",
+    "storage_bucket": "billgen-fae9d.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:234843807306:android:79179889f30754bc98d0b3",
+        "android_client_info": {
+          "package_name": "com.billgen"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyC5dc_txTAtuQ2NC4i4gge-steTw-CChLA"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
