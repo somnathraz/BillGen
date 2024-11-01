@@ -12,7 +12,20 @@
           "package_name": "com.billgen"
         }
       },
-      "oauth_client": [],
+      "oauth_client": [
+        {
+          "client_id": "234843807306-surcv608vhjn6a4o8bu2l44udcgf38hn.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.billgen",
+            "certificate_hash": "dbd5da6dac46256cc0518ee449f9d3eecee5a2de"
+          }
+        },
+        {
+          "client_id": "234843807306-hvm3tef5br6bhven2voo8rab49gpi5a1.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
       "api_key": [
         {
           "current_key": "AIzaSyC5dc_txTAtuQ2NC4i4gge-steTw-CChLA"
@@ -20,7 +33,19 @@
       ],
       "services": {
         "appinvite_service": {
-          "other_platform_oauth_client": []
+          "other_platform_oauth_client": [
+            {
+              "client_id": "234843807306-hvm3tef5br6bhven2voo8rab49gpi5a1.apps.googleusercontent.com",
+              "client_type": 3
+            },
+            {
+              "client_id": "234843807306-3p06aa1gg6qbfg9gphgaelv1n1vs9a2t.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "com.billgen"
+              }
+            }
+          ]
         }
       }
     }

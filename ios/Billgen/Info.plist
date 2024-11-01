@@ -20,6 +20,17 @@
 	<string>$(MARKETING_VERSION)</string>
 	<key>CFBundleSignature</key>
 	<string>????</string>
+	<key>CFBundleURLTypes</key>
+	<array>
+		<dict>
+			<key>CFBundleTypeRole</key>
+			<string>Editor</string>
+			<key>CFBundleURLSchemes</key>
+			<array>
+				<string>app-1-234843807306-ios-4e663cfb01414fa998d0b3</string>
+			</array>
+		</dict>
+	</array>
 	<key>CFBundleVersion</key>
 	<string>$(CURRENT_PROJECT_VERSION)</string>
 	<key>LSRequiresIPhoneOS</key>
@@ -32,7 +43,23 @@
 		<true/>
 	</dict>
 	<key>NSLocationWhenInUseUsageDescription</key>
-	<string/>
+	<string></string>
+	<key>UIAppFonts</key>
+	<array>
+		<string>DMSans_Black.ttf</string>
+		<string>DMSans_Bold.ttf</string>
+		<string>DMSans_ExtraBold.ttf</string>
+		<string>DMSans_Light.ttf</string>
+		<string>DMSans_Medium.ttf</string>
+		<string>DMSans_Regular.ttf</string>
+		<string>DMSans_SemiBold.ttf</string>
+		<string>DMSans_Thin.ttf</string>
+	</array>
+	<key>UIBackgroundModes</key>
+	<array>
+		<string>remote-notification</string>
+		<string>processing</string>
+	</array>
 	<key>UILaunchStoryboardName</key>
 	<string>LaunchScreen</string>
 	<key>UIRequiredDeviceCapabilities</key>
@@ -47,16 +74,5 @@
 	</array>
 	<key>UIViewControllerBasedStatusBarAppearance</key>
 	<false/>
-	<key>UIAppFonts</key>
-	<array>
-		<string>DMSans_Black.ttf</string>
-		<string>DMSans_Bold.ttf</string>
-		<string>DMSans_ExtraBold.ttf</string>
-		<string>DMSans_Light.ttf</string>
-		<string>DMSans_Medium.ttf</string>
-		<string>DMSans_Regular.ttf</string>
-		<string>DMSans_SemiBold.ttf</string>
-		<string>DMSans_Thin.ttf</string>
-	</array>
 </dict>
 </plist>
