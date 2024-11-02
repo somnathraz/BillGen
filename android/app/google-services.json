@@ -2,7 +2,7 @@
   "project_info": {
     "project_number": "234843807306",
     "project_id": "billgen-fae9d",
-    "storage_bucket": "billgen-fae9d.appspot.com"
+    "storage_bucket": "billgen-fae9d.firebasestorage.app"
   },
   "client": [
     {
@@ -13,6 +13,14 @@
         }
       },
       "oauth_client": [
+        {
+          "client_id": "234843807306-4n173q3g8u6lq7ekeishccjqn6r7h81o.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.billgen",
+            "certificate_hash": "dd3e57a224fce4ef9af1308bed56150c9ed56383"
+          }
+        },
         {
           "client_id": "234843807306-surcv608vhjn6a4o8bu2l44udcgf38hn.apps.googleusercontent.com",
           "client_type": 1,

@@ -11,6 +11,8 @@ import Onboarding from './components/Onboarding/Onboarding';
 import Login from './components/Login/Login';
 import auth from '@react-native-firebase/auth';
 import Home from './components/Home/Home';
+import {SafeAreaProvider} from 'react-native-safe-area-context';
+import {SnackbarProvider} from './context/SnackBarContext';
 const Stack = createNativeStackNavigator();
 
 function App() {
@@ -23,7 +25,7 @@ function App() {
       if (user) {
         setInitialRouteName('Home'); // Navigate to Home if logged in
       } else {
-        setInitialRouteName('Onboarding'); // Navigate to Onboarding if not logged in
+        setInitialRouteName('Login'); // Navigate to Onboarding if not logged in
       }
     });
     return unsubscribe; // Unsubscribe on component unmount
@@ -37,22 +39,26 @@ function App() {
   ];
 
   return (
-    <NavigationContainer>
-      <Stack.Navigator
-        initialRouteName={initialRouteName}
-        screenOptions={{headerShown: false}}>
-        {screens.map((screen, index) => (
-          <Stack.Screen
-            key={index}
-            name={screen.name}
-            component={screen.component}
-            options={{
-              gestureEnabled: screen.gestureEnabled,
-            }}
-          />
-        ))}
-      </Stack.Navigator>
-    </NavigationContainer>
+    <SafeAreaProvider>
+      <NavigationContainer>
+        <SnackbarProvider>
+          <Stack.Navigator
+            initialRouteName={initialRouteName}
+            screenOptions={{headerShown: false}}>
+            {screens.map((screen, index) => (
+              <Stack.Screen
+                key={index}
+                name={screen.name}
+                component={screen.component}
+                options={{
+                  gestureEnabled: screen.gestureEnabled,
+                }}
+              />
+            ))}
+          </Stack.Navigator>
+        </SnackbarProvider>
+      </NavigationContainer>
+    </SafeAreaProvider>
   );
 }
 

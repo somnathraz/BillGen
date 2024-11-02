@@ -1,4 +1,4 @@
-import React, {useState, useEffect} from 'react';
+import React, {useState} from 'react';
 import {
   View,
   Text,
@@ -9,49 +9,30 @@ import {
   StatusBar,
   TouchableOpacity,
   Platform,
-  Alert,
-  Button,
 } from 'react-native';
-import auth from '@react-native-firebase/auth';
 import LinearGradient from 'react-native-linear-gradient';
 import {CountryPicker} from 'react-native-country-codes-picker';
 import Theme from '../../Theme/Theme';
 import {SafeAreaView} from 'react-native-safe-area-context';
 import GoogleIcon from './icon/GoogleIcon';
-import FacebookIcon from './icon/FacebookIcon';
 import Video from 'react-native-video';
 import {useNavigation} from '@react-navigation/native';
 import {
   confirmCode,
   signInWithPhoneNumber,
 } from '../../config/Firebase/PhoneAuth';
+import {useSnackbar} from '../../context/SnackBarContext';
+import {SignInWithGoogle} from '../../config/Firebase/GoogleAuth';
 
 const {width, height} = Dimensions.get('window');
 const Login = () => {
+  const {showSnackbar} = useSnackbar();
   const navigation = useNavigation();
   const [phoneNumber, setPhoneNumber] = useState('');
   const [countryCode, setCountryCode] = useState('+91'); // Default to India
   const [isPickerVisible, setPickerVisible] = useState(false);
   const [confirm, setConfirm] = useState(null);
   const [code, setCode] = useState('');
-  const [isLoggedIn, setIsLoggedIn] = useState(false); // Track login status
-
-  const handlePress = () => {
-    navigation.navigate('PhoneLogin');
-  };
-  // Handle login state change
-  function onAuthStateChanged(user) {
-    if (user) {
-      setIsLoggedIn(true);
-      Alert.alert('Success', 'You have logged in successfully!');
-    } else {
-      setIsLoggedIn(false);
-    }
-  }
-  useEffect(() => {
-    const subscriber = auth().onAuthStateChanged(onAuthStateChanged);
-    return subscriber; // unsubscribe on unmount
-  }, []);
 
   return (
     <SafeAreaView style={styles.safeArea} edges={['top', 'right', 'left']}>
@@ -76,7 +57,7 @@ const Login = () => {
             start={{x: 0, y: 0}}
             end={{x: 0, y: 0.97}}
             colors={['#FFFFFF00', '#0C1C2C']}>
-            <View style={styles.welcomeWrapper}></View>
+            <View style={styles.welcomeWrapper} />
             <View style={styles.heading}>
               <Text style={styles.headingText}>
                 Let's upgrade your business management experience
@@ -89,7 +70,7 @@ const Login = () => {
           </LinearGradient>
         </View>
         <View style={styles.body}>
-          {!confirm && !isLoggedIn && (
+          {!confirm && (
             <View style={styles.upperBody}>
               <View style={styles.phnWrapper}>
                 <View style={styles.phoneInputContainer}>
@@ -123,7 +104,14 @@ const Login = () => {
                 </View>
                 <Pressable
                   style={styles.loginBtn}
-                  onPress={signInWithPhoneNumber}>
+                  onPress={() => {
+                    signInWithPhoneNumber(
+                      phoneNumber,
+                      countryCode,
+                      setConfirm,
+                      showSnackbar,
+                    );
+                  }}>
                   <Text style={styles.btnText}>Login in with Mobile</Text>
                 </Pressable>
               </View>
@@ -134,34 +122,41 @@ const Login = () => {
               </View>
 
               <View style={styles.btnWrapper}>
-                <Pressable style={styles.outBtn}>
+                <Pressable
+                  style={styles.outBtn}
+                  onPress={() => SignInWithGoogle(showSnackbar, navigation)}>
                   <GoogleIcon />
                   <Text style={styles.outBtnText}>Google</Text>
-                </Pressable>
-                <Pressable style={styles.outBtn}>
-                  <FacebookIcon />
-                  <Text style={styles.outBtnText}>Facebook</Text>
                 </Pressable>
               </View>
             </View>
           )}
-          <View style={styles.container}>
-            {confirm && (
-              <View style={styles.upperBody}>
-                <Text style={styles.label}>Enter OTP Code:</Text>
-                <TextInput
-                  style={styles.input}
-                  placeholder="123456"
-                  keyboardType="number-pad"
-                  value={code}
-                  onChangeText={setCode}
-                />
-                <Pressable style={styles.loginBtn} onPress={confirmCode}>
-                  <Text style={styles.btnText}>Login in with Mobile</Text>
-                </Pressable>
-              </View>
-            )}
-          </View>
+
+          {confirm && (
+            <View style={styles.upperBody}>
+              <Text style={styles.label}>Enter OTP Code:</Text>
+              <TextInput
+                style={styles.input}
+                placeholder="123456"
+                keyboardType="number-pad"
+                value={code}
+                onChangeText={setCode}
+              />
+              <Pressable
+                style={styles.loginBtn}
+                onPress={() =>
+                  confirmCode(
+                    code,
+                    confirm,
+                    navigation,
+                    showSnackbar,
+                    phoneNumber,
+                  )
+                }>
+                <Text style={styles.btnText}>Login in with Mobile</Text>
+              </Pressable>
+            </View>
+          )}
 
           <View style={styles.lowerBody}>
             <Text style={styles.privacyText}>
