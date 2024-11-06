@@ -11,8 +11,10 @@ import {
   TouchableOpacity,
 } from 'react-native';
 import Theme from '../../Theme/Theme';
+import {useNavigation} from '@react-navigation/native';
 const {width, height} = Dimensions.get('window');
 const Onboarding = () => {
+  const navigation = useNavigation();
   return (
     <SafeAreaView style={styles.safeArea}>
       <View style={styles.container}>

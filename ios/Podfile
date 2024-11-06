@@ -14,6 +14,9 @@ if linkage != nil
   use_frameworks! :linkage => linkage.to_sym
 end
 
+
+use_frameworks! :linkage => :static
+
 target 'Billgen' do
   config = use_native_modules!
 
@@ -22,6 +25,8 @@ target 'Billgen' do
     # An absolute path to your application root.
     :app_path => "#{Pod::Config.instance.installation_root}/.."
   )
+
+
 
   target 'BillgenTests' do
     inherit! :complete
