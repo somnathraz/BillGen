@@ -153,7 +153,7 @@ const Login = () => {
           <View style={styles.lowerBody}>
             <Text style={styles.privacyText}>
               by continuing, you agree to our{' '}
-              <TouchableOpacity style={{width: '100%'}}>
+              <TouchableOpacity style={styles.fullWidth}>
                 <Text style={styles.lineText}>
                   Privacy Policy and Terms of Service
                 </Text>
@@ -250,6 +250,7 @@ const styles = StyleSheet.create({
   lowerBody: {
     alignItems: 'center',
   },
+  fullWidth: {width: '100%'},
   privacyText: {
     textAlign: 'center',
   },

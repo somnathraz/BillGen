@@ -2,7 +2,7 @@ import React, {useState, useRef, useEffect} from 'react';
 import {Text, View, StyleSheet, Dimensions} from 'react-native';
 import {TextInput, Button} from 'react-native-paper';
 import Theme from '../../Theme/Theme';
-const {width, height} = Dimensions.get('window');
+const {height} = Dimensions.get('window');
 
 const ConfirmOtp = ({confirmCode, setCode}) => {
   //   const [text, setText] = React.useState('');
@@ -66,9 +66,7 @@ const ConfirmOtp = ({confirmCode, setCode}) => {
           </View>
           <View style={styles.otpstyle}>
             {remainingSeconds === 0 ? (
-              <Text style={{color: Theme.colors.primary, fontWeight: '600'}}>
-                Resend OTP
-              </Text>
+              <Text style={styles.resendText}>Resend OTP</Text>
             ) : (
               <>
                 <Text style={styles.text}>{formattedTime}</Text>
@@ -83,7 +81,7 @@ const ConfirmOtp = ({confirmCode, setCode}) => {
           disabled={!buttonEnabled}
           uppercase
           onPress={confirmCode}
-          labelStyle={{fontSize: 18, color: 'white'}}>
+          labelStyle={styles.confirmText}>
           Continue
         </Button>
       </View>
@@ -121,6 +119,11 @@ const styles = StyleSheet.create({
     gap: 10,
     // justifyContent: 'space-between',
   },
+  resendText: {
+    color: Theme.colors.primary,
+    fontWeight: '600',
+    fontFamily: Theme.fonts.bold.fontFamily,
+  },
   input: {
     width: 50,
     height: 50,
@@ -144,8 +147,14 @@ const styles = StyleSheet.create({
     borderRadius: (height * 0.8) / 100,
     backgroundColor: Theme.colors.inactive,
   },
+  confirmText: {
+    fontSize: 18,
+    color: 'white',
+    fontFamily: Theme.fonts.regular.fontFamily,
+  },
   text: {
     fontSize: 18,
     fontWeight: 'bold',
+    fontFamily: Theme.fonts.bold.fontFamily,
   },
 });

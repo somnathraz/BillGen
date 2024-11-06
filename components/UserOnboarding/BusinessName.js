@@ -1,5 +1,5 @@
 import React, {useState} from 'react';
-import {Text, View, StyleSheet, StatusBar, TextInput} from 'react-native';
+import {View, StyleSheet, StatusBar, TextInput} from 'react-native';
 import {SafeAreaView} from 'react-native-safe-area-context';
 import Theme from '../../Theme/Theme';
 
