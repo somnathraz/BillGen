@@ -8,6 +8,7 @@ import {
   Image,
   TouchableOpacity,
   FlatList,
+  StatusBar,
 } from 'react-native';
 import Theme from '../../Theme/Theme';
 import { useNavigation } from '@react-navigation/native';
@@ -18,21 +19,21 @@ const slides = [
   {
     id: '1',
     backgroundColor: '#CDE3F3',
-    image: require('../../assets/fonts/Images/Onboarding1.png'),
+    image: require('../../assets/Images/Onboarding1.png'),
     heading: 'New approach for your Finance',
     description: 'Now your finances are in one place and always under control',
   },
   {
     id: '2',
     backgroundColor: '#D4ECCD',
-    image: require('../../assets/fonts/Images/Onboarding2.png'),
-    heading: 'Quick analysis of all expenses',
+    image: require('../../assets/Images/Onboarding2.png'),
+    heading: 'Quick analysis of all expenses',
     description: 'Now your finances are in one place and always under control',
   },
   {
     id: '3',
     backgroundColor: '#F8EED4',
-    image: require('../../assets/fonts/Images/Onboarding3.png'),
+    image: require('../../assets/Images/Onboarding3.png'),
     heading: 'Achieve your financial goals',
     description: 'Now your finances are in one place and always under control',
   },
@@ -71,6 +72,7 @@ const Onboarding = () => {
 
   return (
     <SafeAreaView style={styles.safeArea}>
+      <StatusBar backgroundColor={Theme.colors.white} barStyle="dark-content"/>
       <FlatList
         data={slides}
         renderItem={renderItem}
