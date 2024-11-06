@@ -1,48 +1,107 @@
-import React from 'react';
+import React, { useRef, useState, useEffect } from 'react';
 import {
   View,
   Text,
   StyleSheet,
-  Platform,
   SafeAreaView,
   Dimensions,
   Image,
-  Button,
   TouchableOpacity,
+  FlatList,
 } from 'react-native';
 import Theme from '../../Theme/Theme';
-import {useNavigation} from '@react-navigation/native';
-const {width, height} = Dimensions.get('window');
+import { useNavigation } from '@react-navigation/native';
+
+const { width, height } = Dimensions.get('window');
+
+const slides = [
+  {
+    id: '1',
+    backgroundColor: '#CDE3F3',
+    image: require('../../assets/fonts/Images/Onboarding1.png'),
+    heading: 'New approach for your Finance',
+    description: 'Now your finances are in one place and always under control',
+  },
+  {
+    id: '2',
+    backgroundColor: '#D4ECCD',
+    image: require('../../assets/fonts/Images/Onboarding2.png'),
+    heading: 'Quick analysis of all expenses',
+    description: 'Now your finances are in one place and always under control',
+  },
+  {
+    id: '3',
+    backgroundColor: '#F8EED4',
+    image: require('../../assets/fonts/Images/Onboarding3.png'),
+    heading: 'Achieve your financial goals',
+    description: 'Now your finances are in one place and always under control',
+  },
+];
+
 const Onboarding = () => {
   const navigation = useNavigation();
+  const [currentIndex, setCurrentIndex] = useState(0);
+  const flatListRef = useRef(null);
+
+  useEffect(() => {
+    const interval = setInterval(() => {
+      setCurrentIndex((prevIndex) =>
+        prevIndex === slides.length - 1 ? 0 : prevIndex + 1
+      );
+    }, 3000); // Change slide every 3 seconds
+
+    return () => clearInterval(interval); // Clear interval on unmount
+  }, []);
+
+  useEffect(() => {
+    if (flatListRef.current) {
+      flatListRef.current.scrollToIndex({ index: currentIndex, animated: true });
+    }
+  }, [currentIndex]);
+
+  const renderItem = ({ item }) => (
+    <View style={[styles.slide, { backgroundColor: item.backgroundColor }]}>
+      <Text style={styles.heading}>{item.heading}</Text>
+      <Text style={styles.desc}>{item.description}</Text>
+      <View style={styles.imgWrapper}>
+        <Image source={item.image} style={styles.onboardingImg} />
+      </View>
+    </View>
+  );
+
   return (
     <SafeAreaView style={styles.safeArea}>
-      <View style={styles.container}>
-        <View style={styles.bigBox}>
-          <Text style={styles.heading}>
-            New approach for your Finance
-          </Text>
-          <Text style={styles.desc}>
-          Now your finances are in one place and always under control
-          </Text>
-          <View style={styles.imgWrapper}>
-            <Image source={require('../../assets/fonts/Images/Onboarding1.png')}
-            style={styles.OnboardingImg}/>
-          </View>
-        </View>
-        <View style={styles.smallBox}>
-          <TouchableOpacity style={styles.button} // Apply custom styles here
-            onPress={() => {
-              // Handle button press
-            }}
-          >
-            <Text style={styles.buttonText}>Get Started</Text>
-          </TouchableOpacity>
-          <View style={styles.dotsContainer}>
-            <View style={styles.dotActive} />
-            <View style={styles.dot} />
-            <View style={styles.dot} />
-          </View>
+      <FlatList
+        data={slides}
+        renderItem={renderItem}
+        horizontal
+        pagingEnabled
+        showsHorizontalScrollIndicator={false}
+        keyExtractor={(item) => item.id}
+        ref={flatListRef}
+        contentContainerStyle={styles.flatListContent}
+      />
+
+      <View style={[styles.smallBox, { backgroundColor: slides[currentIndex].backgroundColor }]}>
+        <TouchableOpacity
+          style={styles.button}
+          onPress={() => {
+            // Handle button press, or navigate to another screen
+          }}
+        >
+          <Text style={styles.buttonText}>Get Started</Text>
+        </TouchableOpacity>
+
+        <View style={styles.dotsContainer}>
+          {slides.map((_, index) => (
+            <View
+              key={index}
+              style={[
+                styles.dot,
+                currentIndex === index && styles.activeDot,
+              ]}
+            />
+          ))}
         </View>
       </View>
     </SafeAreaView>
@@ -56,73 +115,70 @@ const styles = StyleSheet.create({
     flex: 1,
     backgroundColor: Theme.colors.white,
   },
-  container: {
-    flex: 1,
-    // alignItems: 'center',
-    // justifyContent: 'center',
-    paddingHorizontal: (width * 3.5) / 100,
-    paddingTop:(width*8/100),
+  flatListContent: {
+    paddingHorizontal: (width * 3.5) / 100, // Padding around FlatList to ensure each slide has margin
+    paddingTop:(height * 5) / 100,
     
-    gap:20,
   },
-  bigBox:{
-    backgroundColor: '#CDE3F3',
-    paddingHorizontal: (width*3.5/100),
-    paddingTop: height*5/100,
-    borderRadius: height*3/100,
-    height: height*60/100,
-  },
-  smallBox:{
-    backgroundColor: '#CDE3F3',
-    paddingHorizontal: (width*6/100),
-    paddingVertical: height*3/100,
-    borderRadius: height*3/100,
-    
-    // height: height*10/100,
+  slide: {
+    width: width * 0.9, // Set slide width to 90% of screen width
+    height:height*65/100,
+    borderRadius: 20, // Rounded corners for each slide
+    marginHorizontal: width * 0.05, // Center the slides with side margins
+    paddingHorizontal: (width * 3.5) / 100, // Padding inside each slide
+    paddingTop: (height * 5) / 100,
     flexDirection:'column',
-    justifyContent:'center',
+    gap:10,
+  },
+  smallBox: {
+    paddingHorizontal: (width * 6) / 100,
+    paddingVertical: (height * 3) / 100,
+    borderRadius: (height * 3) / 100,
+    justifyContent: 'center',
     alignItems: 'center',
+    marginHorizontal:(width * 3.5) / 100,
+    marginBottom:(height * 5) / 100,
   },
   heading: {
     fontFamily: Theme.fonts.semiBold.fontFamily,
     fontSize: 56,
-    lineHeight:60,
+    lineHeight: 60,
     color: '#000',
     textAlign: 'left',
-    // fontWeight: Platform.OS === 'ios' ? '700' : 'normal',
+    marginHorizontal: width*4/100,
   },
   desc: {
     fontFamily: Theme.fonts.regular.fontFamily,
     color: Theme.colors.descText,
     textAlign: 'left',
     fontSize: 20,
-    lineHeight:28,
-    // paddingLeft:width*2.5/100,
+    lineHeight: 28,
+    marginLeft: width*4/100,
   },
-  imgWrapper:{
-    // position:'absolute',
-    // right:0,
-    // bottom: 0,
-    marginTop: height*31/100,
-    marginRight: -(width*3.5/100),
-  },
-  OnboardingImg:{
-    alignSelf:'flex-end',
-    position:'absolute',
-    right:0,
+  imgWrapper: {
+    marginTop: (height * 31) / 100,
+    position: 'absolute',
+    right: 0,
     bottom: 0,
+    
   },
-  button:{
-    backgroundColor: 'black',
-    flexDirection:"row",
-    justifyContent:'center',
+  onboardingImg: {
+    alignSelf: 'flex-end',
+    resizeMode:'contain',
+    // height:345,
+    // width:341,
+  },
+  button: {
+    backgroundColor: Theme.colors.primary,
+    flexDirection: 'row',
+    justifyContent: 'center',
     alignItems: 'center',
-    borderRadius: height*2/100,
-    paddingHorizontal: (width*3.5/100),
+    borderRadius: (height * 2) / 100,
+    paddingHorizontal: (width * 3.5) / 100,
     paddingVertical: 15,
     width: '100%',
   },
-  buttonText:{
+  buttonText: {
     fontFamily: Theme.fonts.regular.fontFamily,
     color: 'white',
     fontSize: 20,
@@ -130,21 +186,17 @@ const styles = StyleSheet.create({
   dotsContainer: {
     flexDirection: 'row',
     justifyContent: 'center',
-    alignItems:'center',
-    marginTop: 20, // Space above the dots
+    alignItems: 'center',
+    marginTop: 20,
   },
   dot: {
     width: 8,
     height: 8,
-    borderRadius: 5,
-    backgroundColor: Theme.colors.primary, // Inactive dot color
+    borderRadius: 4,
+    backgroundColor: '#888',
     marginHorizontal: 5,
   },
-  dotActive: {
-    width: 11,
-    height: 11,
-    borderRadius: 5,
-    backgroundColor: Theme.colors.primary, // Active dot color
-    marginHorizontal: 5,
+  activeDot: {
+    backgroundColor: 'black',
   },
 });

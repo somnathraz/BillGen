@@ -25,7 +25,7 @@ function App() {
       if (user) {
         setInitialRouteName('Home'); // Navigate to Home if logged in
       } else {
-        setInitialRouteName('Login'); // Navigate to Onboarding if not logged in
+        setInitialRouteName('Onboarding'); // Navigate to Onboarding if not logged in
       }
     });
     return unsubscribe; // Unsubscribe on component unmount
