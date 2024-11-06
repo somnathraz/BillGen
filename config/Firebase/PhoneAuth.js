@@ -34,9 +34,9 @@ export const confirmCode = async (
   phone_number,
 ) => {
   try {
-    await confirm.confirm(code);
+    await confirm.confirm(code.join(''));
     showSnackbar('Phone number verified successfully!');
-    const response = await fetch('http://192.168.1.96:8000/users/', {
+    const response = await fetch('http://192.168.1.20:8000/users/', {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',

@@ -23,6 +23,7 @@ import {
 } from '../../config/Firebase/PhoneAuth';
 import {useSnackbar} from '../../context/SnackBarContext';
 import {SignInWithGoogle} from '../../config/Firebase/GoogleAuth';
+import ConfirmOtp from './ConfirmOtp';
 
 const {width, height} = Dimensions.get('window');
 const Login = () => {
@@ -112,7 +113,7 @@ const Login = () => {
                       showSnackbar,
                     );
                   }}>
-                  <Text style={styles.btnText}>Login in with Mobile</Text>
+                  <Text style={styles.btnText}>Send OTP</Text>
                 </Pressable>
               </View>
               <View style={styles.lineWrap}>
@@ -134,17 +135,9 @@ const Login = () => {
 
           {confirm && (
             <View style={styles.upperBody}>
-              <Text style={styles.label}>Enter OTP Code:</Text>
-              <TextInput
-                style={styles.input}
-                placeholder="123456"
-                keyboardType="number-pad"
-                value={code}
-                onChangeText={setCode}
-              />
-              <Pressable
-                style={styles.loginBtn}
-                onPress={() =>
+              <ConfirmOtp
+                setCode={setCode}
+                confirmCode={() =>
                   confirmCode(
                     code,
                     confirm,
@@ -152,9 +145,8 @@ const Login = () => {
                     showSnackbar,
                     phoneNumber,
                   )
-                }>
-                <Text style={styles.btnText}>Login in with Mobile</Text>
-              </Pressable>
+                }
+              />
             </View>
           )}
 
@@ -188,6 +180,10 @@ const styles = StyleSheet.create({
     flex: 1,
     justifyContent: 'space-between',
     paddingVertical: (height * 2) / 100,
+    position: 'absolute',
+    width: '100%',
+    bottom: -30,
+    paddingBottom: (height * 5) / 100,
   },
   video: {
     position: 'absolute',
@@ -226,15 +222,19 @@ const styles = StyleSheet.create({
   desc: {
     color: Theme.colors.white,
     fontSize: (width * 3) / 100,
-    fontWeight: Platform.OS === 'ios' ? '300' : 'normal',
+    // fontWeight: Platform.OS === 'ios' ? '300' : 'normal',
+    fontFamily: Theme.fonts.regular.fontFamily,
+    lineHeight: 20,
   },
   body: {
     flex: 0.42,
     backgroundColor: Theme.colors.white,
     flexDirection: 'column',
     justifyContent: 'space-between',
-    paddingVertical: (height * 3) / 100,
+    paddingVertical: (height * 4.5) / 100,
     paddingHorizontal: (height * 2) / 100,
+    borderTopLeftRadius: 30,
+    borderTopRightRadius: 30,
   },
   phnWrapper: {
     flexDirection: 'column',
@@ -243,7 +243,9 @@ const styles = StyleSheet.create({
   upperBody: {
     flex: 0.55,
     flexDirection: 'column',
+
     justifyContent: 'space-between',
+    gap: 20,
   },
   lowerBody: {
     alignItems: 'center',
@@ -252,19 +254,20 @@ const styles = StyleSheet.create({
     textAlign: 'center',
   },
   loginBtn: {
-    backgroundColor: '#C0E863',
-    borderRadius: 4,
+    backgroundColor: Theme.colors.primary,
     alignItems: 'center',
     justifyContent: 'center',
     paddingVertical: (height * 1.5) / 100,
+    borderRadius: (height * 0.8) / 100,
   },
   phoneInputContainer: {
     flexDirection: 'row',
     alignItems: 'center',
     borderWidth: 1,
     borderColor: '#ccc',
-    borderRadius: 5,
     marginBottom: 20,
+    borderRadius: (height * 0.8) / 100,
+    paddingHorizontal: (width * 3) / 100,
   },
 
   phoneInput: {
@@ -273,7 +276,14 @@ const styles = StyleSheet.create({
     paddingHorizontal: 10,
   },
   btnText: {
+    fontSize: 15,
+    color: 'white',
+    fontFamily: Theme.fonts.semiBold.fontFamily,
+    fontWeight: Platform.OS === 'ios' ? '500' : 'normal',
+  },
+  label: {
     color: Theme.colors.black,
+    fontSize: 15,
     fontFamily: Theme.fonts.semiBold.fontFamily,
     fontWeight: Platform.OS === 'ios' ? '500' : 'normal',
   },
@@ -286,7 +296,7 @@ const styles = StyleSheet.create({
   lineText: {
     color: Theme.colors.black,
 
-    fontFamily: Theme.fonts.regular.fontFamily,
+    fontFamily: Theme.fonts.medium.fontFamily,
   },
   line: {
     flex: 0.58,
@@ -302,14 +312,15 @@ const styles = StyleSheet.create({
   },
   outBtn: {
     borderWidth: 1,
-    borderRadius: 4,
     flexDirection: 'row',
     alignItems: 'center',
     justifyContent: 'center',
     gap: (width * 2) / 100,
-    paddingVertical: (width * 2.9) / 100,
     paddingHorizontal: (width * 10) / 100,
     borderColor: Theme.colors.lightBorderColor,
+    width: '100%',
+    paddingVertical: (height * 1.5) / 100,
+    borderRadius: (height * 0.8) / 100,
   },
   outBtnText: {
     color: Theme.colors.black,
