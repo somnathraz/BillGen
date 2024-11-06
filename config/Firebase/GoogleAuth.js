@@ -5,8 +5,6 @@ import {
 import auth from '@react-native-firebase/auth';
 
 export const SignInWithGoogle = async (showSnackbar, navigation) => {
-  console.log(navigation);
-
   try {
     GoogleSignin.configure({
       webClientId:
@@ -37,7 +35,6 @@ export const SignInWithGoogle = async (showSnackbar, navigation) => {
         username: data.user.displayName,
       }),
     });
-    console.log(response, 'before');
 
     const result = await response.json();
     console.log(result, 'from backend');
@@ -47,7 +44,7 @@ export const SignInWithGoogle = async (showSnackbar, navigation) => {
         index: 0,
         routes: [
           {
-            name: 'Home',
+            name: 'BusinessName',
           },
         ],
       });

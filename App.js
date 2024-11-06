@@ -13,6 +13,7 @@ import auth from '@react-native-firebase/auth';
 import Home from './components/Home/Home';
 import {SafeAreaProvider} from 'react-native-safe-area-context';
 import {SnackbarProvider} from './context/SnackBarContext';
+import BusinessName from './components/UserOnboarding/BusinessName';
 const Stack = createNativeStackNavigator();
 
 function App() {
@@ -35,6 +36,7 @@ function App() {
   const screens = [
     {name: 'Onboarding', component: Onboarding, gestureEnabled: false},
     {name: 'Login', component: Login, gestureEnabled: true},
+    {name: 'BusinessName', component: BusinessName, gestureEnabled: true},
     {name: 'Home', component: Home, gestureEnabled: true},
   ];
 

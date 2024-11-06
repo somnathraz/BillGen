@@ -2,6 +2,8 @@ import React from 'react';
 import {Pressable, Text, View} from 'react-native';
 import auth from '@react-native-firebase/auth';
 import {useNavigation} from '@react-navigation/native';
+import {SafeAreaView} from 'react-native-safe-area-context';
+
 const Home = () => {
   const navigation = useNavigation();
   const logout = async () => {
@@ -16,12 +18,14 @@ const Home = () => {
     });
   };
   return (
-    <View>
-      <Text>HOme</Text>
-      <Pressable onPress={logout}>
-        <Text>Logout</Text>
-      </Pressable>
-    </View>
+    <SafeAreaView edges={['top', 'right', 'left']}>
+      <View>
+        <Text>HOme</Text>
+        <Pressable onPress={logout}>
+          <Text>Logout</Text>
+        </Pressable>
+      </View>
+    </SafeAreaView>
   );
 };
 
