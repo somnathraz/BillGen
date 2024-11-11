@@ -25,7 +25,7 @@ export const SignInWithGoogle = async (showSnackbar, navigation) => {
     const data = await auth().signInWithCredential(googleCredential);
     console.log(data, 'data from google');
 
-    const response = await fetch('http://192.168.1.20:8000/users/', {
+    const response = await fetch('http://192.168.1.89:8000/users/', {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
@@ -55,7 +55,7 @@ export const SignInWithGoogle = async (showSnackbar, navigation) => {
         index: 0,
         routes: [
           {
-            name: 'Home',
+            name: 'BusinessName',
           },
         ],
       });

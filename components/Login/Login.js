@@ -9,6 +9,7 @@ import {
   StatusBar,
   TouchableOpacity,
   Platform,
+  ActivityIndicator,
 } from 'react-native';
 import LinearGradient from 'react-native-linear-gradient';
 import {CountryPicker} from 'react-native-country-codes-picker';
@@ -29,6 +30,7 @@ const {width, height} = Dimensions.get('window');
 const Login = () => {
   const {showSnackbar} = useSnackbar();
   const navigation = useNavigation();
+  const [loading, setLoading] = useState(false);
   const [phoneNumber, setPhoneNumber] = useState('');
   const [countryCode, setCountryCode] = useState('+91'); // Default to India
   const [isPickerVisible, setPickerVisible] = useState(false);
@@ -111,9 +113,14 @@ const Login = () => {
                       countryCode,
                       setConfirm,
                       showSnackbar,
+                      setLoading,
                     );
                   }}>
-                  <Text style={styles.btnText}>Send OTP</Text>
+                  {loading ? (
+                    <ActivityIndicator size="small" color="#fff" />
+                  ) : (
+                    <Text style={styles.btnText}>Send OTP</Text>
+                  )}
                 </Pressable>
               </View>
               <View style={styles.lineWrap}>
@@ -136,6 +143,7 @@ const Login = () => {
           {confirm && (
             <View style={styles.upperBody}>
               <ConfirmOtp
+                loading={loading}
                 setCode={setCode}
                 confirmCode={() =>
                   confirmCode(
@@ -144,6 +152,7 @@ const Login = () => {
                     navigation,
                     showSnackbar,
                     phoneNumber,
+                    setLoading,
                   )
                 }
               />
@@ -208,6 +217,15 @@ const styles = StyleSheet.create({
     gap: (width * 5) / 100,
     paddingHorizontal: (height * 2) / 100,
     paddingBottom: (width * 4) / 100,
+  },
+  codeContainer: {
+    paddingRight: (width * 4) / 100,
+    borderRightWidth: 1,
+  },
+  codeText: {
+    color: Theme.colors.black,
+    fontFamily: Theme.fonts.semiBold.fontFamily,
+    fontWeight: Platform.OS === 'ios' ? '500' : 'normal',
   },
   welcomeWrapper: {
     alignItems: 'center',

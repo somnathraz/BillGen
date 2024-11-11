@@ -72,39 +72,45 @@ const Onboarding = () => {
 
   return (
     <SafeAreaView style={styles.safeArea}>
-      <StatusBar backgroundColor={Theme.colors.white} barStyle="dark-content" />
-      <FlatList
-        data={slides}
-        renderItem={renderItem}
-        horizontal
-        pagingEnabled
-        showsHorizontalScrollIndicator={false}
-        keyExtractor={item => item.id}
-        ref={flatListRef}
-        contentContainerStyle={styles.flatListContent}
-      />
+      <View style={styles.container}>
+        <StatusBar
+          backgroundColor={Theme.colors.white}
+          barStyle="dark-content"
+        />
+        <View style={styles.upperBody}>
+          <FlatList
+            data={slides}
+            renderItem={renderItem}
+            horizontal
+            pagingEnabled
+            showsHorizontalScrollIndicator={false}
+            keyExtractor={item => item.id}
+            ref={flatListRef}
+            contentContainerStyle={styles.flatListContent}
+          />
+        </View>
+        <View
+          style={[
+            styles.smallBox,
+            {backgroundColor: slides[currentIndex].backgroundColor},
+          ]}>
+          <TouchableOpacity
+            style={styles.button}
+            onPress={() => {
+              navigation.navigate('Login');
+              // Handle button press, or navigate to another screen
+            }}>
+            <Text style={styles.buttonText}>Get Started</Text>
+          </TouchableOpacity>
 
-      <View
-        style={[
-          styles.smallBox,
-          {backgroundColor: slides[currentIndex].backgroundColor},
-        ]}>
-        <TouchableOpacity
-          style={styles.button}
-          onPress={() => {
-            navigation.navigate('Login');
-            // Handle button press, or navigate to another screen
-          }}>
-          <Text style={styles.buttonText}>Get Started</Text>
-        </TouchableOpacity>
-
-        <View style={styles.dotsContainer}>
-          {slides.map((_, index) => (
-            <View
-              key={index}
-              style={[styles.dot, currentIndex === index && styles.activeDot]}
-            />
-          ))}
+          <View style={styles.dotsContainer}>
+            {slides.map((_, index) => (
+              <View
+                key={index}
+                style={[styles.dot, currentIndex === index && styles.activeDot]}
+              />
+            ))}
+          </View>
         </View>
       </View>
     </SafeAreaView>
@@ -118,18 +124,26 @@ const styles = StyleSheet.create({
     flex: 1,
     backgroundColor: Theme.colors.white,
   },
+  container: {
+    flex: 1,
+    gap: (height * 2) / 100,
+    paddingVertical: (height * 3) / 100,
+    paddingHorizontal: width * 0.05, // Center the slides with side margins
+  },
+  upperBody: {
+    flex: 1,
+  },
   flatListContent: {
     paddingHorizontal: (width * 3.5) / 100, // Padding around FlatList to ensure each slide has margin
-    paddingTop: (height * 5) / 100,
+    // paddingTop: (height * 5) / 100,
   },
   slide: {
     width: width * 0.9, // Set slide width to 90% of screen width
-    height: (height * 65) / 100,
+    height: (height * 64) / 100,
     borderRadius: 20, // Rounded corners for each slide
-    marginHorizontal: width * 0.05, // Center the slides with side margins
     paddingHorizontal: (width * 3.5) / 100, // Padding inside each slide
-    paddingTop: (height * 5) / 100,
     flexDirection: 'column',
+    paddingTop: (height * 1) / 100,
     gap: 10,
   },
   smallBox: {
@@ -138,12 +152,11 @@ const styles = StyleSheet.create({
     borderRadius: (height * 3) / 100,
     justifyContent: 'center',
     alignItems: 'center',
-    marginHorizontal: (width * 3.5) / 100,
-    marginBottom: (height * 5) / 100,
+    // marginHorizontal: (width * 3.5) / 100,
   },
   heading: {
     fontFamily: Theme.fonts.semiBold.fontFamily,
-    fontSize: 56,
+    fontSize: (width * 13) / 100,
     lineHeight: 60,
     color: '#000',
     textAlign: 'left',

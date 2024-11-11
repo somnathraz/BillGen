@@ -1,10 +1,16 @@
 import React, {useState, useRef, useEffect} from 'react';
-import {Text, View, StyleSheet, Dimensions} from 'react-native';
+import {
+  Text,
+  View,
+  StyleSheet,
+  Dimensions,
+  ActivityIndicator,
+} from 'react-native';
 import {TextInput, Button} from 'react-native-paper';
 import Theme from '../../Theme/Theme';
 const {height} = Dimensions.get('window');
 
-const ConfirmOtp = ({confirmCode, setCode}) => {
+const ConfirmOtp = ({confirmCode, setCode, loading}) => {
   //   const [text, setText] = React.useState('');
   const [otp, setOtp] = useState(['', '', '', '', '', '']);
   const inputRefs = useRef([null, null, null, null, null, null]);
@@ -15,7 +21,7 @@ const ConfirmOtp = ({confirmCode, setCode}) => {
     setOtp(newOtp);
     setCode(newOtp);
 
-    if (text.length === 1 && index < 8) {
+    if (text.length === 1 && index < 5) {
       inputRefs.current[index + 1].focus();
     }
   };
@@ -75,6 +81,7 @@ const ConfirmOtp = ({confirmCode, setCode}) => {
             )}
           </View>
         </View>
+
         <Button
           style={buttonEnabled ? styles.namebtn : styles.enamebtn}
           mode="contained"
@@ -82,7 +89,11 @@ const ConfirmOtp = ({confirmCode, setCode}) => {
           uppercase
           onPress={confirmCode}
           labelStyle={styles.confirmText}>
-          Continue
+          {loading ? (
+            <ActivityIndicator size="small" color="#fff" />
+          ) : (
+            'Continue'
+          )}
         </Button>
       </View>
     </View>

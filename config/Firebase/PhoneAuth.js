@@ -6,7 +6,9 @@ export const signInWithPhoneNumber = async (
   countryCode,
   setConfirm,
   showSnackbar,
+  setLoading,
 ) => {
+  setLoading(true);
   if (phoneNumber.trim() === '') {
     showSnackbar('Please enter a valid phone number.');
     return;
@@ -19,8 +21,10 @@ export const signInWithPhoneNumber = async (
     const confirmation = await auth().signInWithPhoneNumber(number);
     // console.log(confirmation);
     setConfirm(confirmation);
+    setLoading(false);
   } catch (error) {
     console.error(error);
+    setLoading(false);
     showSnackbar('Failed to send verification code.');
   }
 };
@@ -32,11 +36,13 @@ export const confirmCode = async (
   navigation,
   showSnackbar,
   phone_number,
+  setLoading,
 ) => {
   try {
+    setLoading(true);
     await confirm.confirm(code.join(''));
     showSnackbar('Phone number verified successfully!');
-    const response = await fetch('http://192.168.1.20:8000/users/', {
+    const response = await fetch('http://192.168.1.174:8000/users/', {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
@@ -57,6 +63,7 @@ export const confirmCode = async (
           },
         ],
       });
+      setLoading(false);
       showSnackbar('successfully updated');
     } else if (response.status === 409) {
       showSnackbar('Logged in successful');
@@ -68,10 +75,14 @@ export const confirmCode = async (
           },
         ],
       });
+      setLoading(false);
     } else {
+      setLoading(false);
+
       showSnackbar('Please try again.');
     }
   } catch (error) {
+    setLoading(false);
     console.log('Invalid code', error);
     showSnackbar('Invalid code. Please try again.');
   }
