@@ -10,6 +10,7 @@ import {
   TouchableOpacity,
   Platform,
   ActivityIndicator,
+  KeyboardAvoidingView,
 } from 'react-native';
 import LinearGradient from 'react-native-linear-gradient';
 import {CountryPicker} from 'react-native-country-codes-picker';
@@ -25,12 +26,14 @@ import {
 import {useSnackbar} from '../../context/SnackBarContext';
 import {SignInWithGoogle} from '../../config/Firebase/GoogleAuth';
 import ConfirmOtp from './ConfirmOtp';
+import {useUserData} from '../../context/UserContext';
 
 const {width, height} = Dimensions.get('window');
 const Login = () => {
   const {showSnackbar} = useSnackbar();
   const navigation = useNavigation();
   const [loading, setLoading] = useState(false);
+  const {userData, setUserData} = useUserData();
   const [phoneNumber, setPhoneNumber] = useState('');
   const [countryCode, setCountryCode] = useState('+91'); // Default to India
   const [isPickerVisible, setPickerVisible] = useState(false);
@@ -53,7 +56,8 @@ const Login = () => {
         repeat={true}
         muted={true}
       />
-      <View style={styles.container}>
+
+      <KeyboardAvoidingView style={styles.container} behavior="height">
         <View style={styles.header}>
           <LinearGradient
             style={styles.gradient}
@@ -72,6 +76,7 @@ const Login = () => {
             </View>
           </LinearGradient>
         </View>
+
         <View style={styles.body}>
           {!confirm && (
             <View style={styles.upperBody}>
@@ -95,7 +100,6 @@ const Login = () => {
                       // Styles for whole modal [View]
                       modal: {
                         height: (height * 50) / 100,
-                        backgroundColor: 'red',
                       },
                     }}
                     onBackdropPress={() => setPickerVisible(false)}
@@ -114,6 +118,8 @@ const Login = () => {
                       setConfirm,
                       showSnackbar,
                       setLoading,
+                      setUserData,
+                      userData,
                     );
                   }}>
                   {loading ? (
@@ -123,6 +129,7 @@ const Login = () => {
                   )}
                 </Pressable>
               </View>
+
               <View style={styles.lineWrap}>
                 <View style={styles.line} />
                 <Text style={styles.lineText}>or login with</Text>
@@ -132,7 +139,14 @@ const Login = () => {
               <View style={styles.btnWrapper}>
                 <Pressable
                   style={styles.outBtn}
-                  onPress={() => SignInWithGoogle(showSnackbar, navigation)}>
+                  onPress={() =>
+                    SignInWithGoogle(
+                      showSnackbar,
+                      navigation,
+                      setUserData,
+                      userData,
+                    )
+                  }>
                   <GoogleIcon />
                   <Text style={styles.outBtnText}>Google</Text>
                 </Pressable>
@@ -158,7 +172,6 @@ const Login = () => {
               />
             </View>
           )}
-
           <View style={styles.lowerBody}>
             <Text style={styles.privacyText}>
               by continuing, you agree to our{' '}
@@ -170,7 +183,7 @@ const Login = () => {
             </Text>
           </View>
         </View>
-      </View>
+      </KeyboardAvoidingView>
     </SafeAreaView>
   );
 };
@@ -180,7 +193,7 @@ export default Login;
 const styles = StyleSheet.create({
   safeArea: {
     flex: 1,
-    backgroundColor: '#4C5864',
+    backgroundColor: Theme.colors.white,
   },
   container: {
     flex: 1,
@@ -253,19 +266,20 @@ const styles = StyleSheet.create({
     paddingHorizontal: (height * 2) / 100,
     borderTopLeftRadius: 30,
     borderTopRightRadius: 30,
+    alignItems: 'center',
   },
   phnWrapper: {
     flexDirection: 'column',
     gap: 10,
   },
   upperBody: {
-    flex: 0.55,
     flexDirection: 'column',
-
     justifyContent: 'space-between',
-    gap: 20,
+    gap: 10,
   },
   lowerBody: {
+    width: '100%',
+    backgroundColor: Theme.colors.white,
     alignItems: 'center',
   },
   fullWidth: {width: '100%'},

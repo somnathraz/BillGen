@@ -7,6 +7,8 @@ export const signInWithPhoneNumber = async (
   setConfirm,
   showSnackbar,
   setLoading,
+  setUserData,
+  userData,
 ) => {
   setLoading(true);
   if (phoneNumber.trim() === '') {
@@ -15,6 +17,7 @@ export const signInWithPhoneNumber = async (
   }
   const number = countryCode + phoneNumber;
   console.log(number);
+  setUserData({...userData, phoneNumber: number});
 
   try {
     showSnackbar('A verification code has been sent to your phone.');
@@ -42,7 +45,7 @@ export const confirmCode = async (
     setLoading(true);
     await confirm.confirm(code.join(''));
     showSnackbar('Phone number verified successfully!');
-    const response = await fetch('http://192.168.1.174:8000/users/', {
+    const response = await fetch('http://192.168.31.130:8000/users/', {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',

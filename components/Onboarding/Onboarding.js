@@ -139,7 +139,7 @@ const styles = StyleSheet.create({
   },
   slide: {
     width: width * 0.9, // Set slide width to 90% of screen width
-    height: (height * 64) / 100,
+    flex: 1,
     borderRadius: 20, // Rounded corners for each slide
     paddingHorizontal: (width * 3.5) / 100, // Padding inside each slide
     flexDirection: 'column',
@@ -156,7 +156,7 @@ const styles = StyleSheet.create({
   },
   heading: {
     fontFamily: Theme.fonts.semiBold.fontFamily,
-    fontSize: (width * 13) / 100,
+    fontSize: (width * 12) / 100,
     lineHeight: 60,
     color: '#000',
     textAlign: 'left',

@@ -4,7 +4,12 @@ import {
 } from '@react-native-google-signin/google-signin';
 import auth from '@react-native-firebase/auth';
 
-export const SignInWithGoogle = async (showSnackbar, navigation) => {
+export const SignInWithGoogle = async (
+  showSnackbar,
+  navigation,
+  setUserData,
+  userData,
+) => {
   try {
     GoogleSignin.configure({
       webClientId:
@@ -24,8 +29,9 @@ export const SignInWithGoogle = async (showSnackbar, navigation) => {
 
     const data = await auth().signInWithCredential(googleCredential);
     console.log(data, 'data from google');
+    setUserData({...userData, email: data.additionalUserInfo.profile.email});
 
-    const response = await fetch('http://192.168.1.89:8000/users/', {
+    const response = await fetch('http://192.168.31.130:8000/users/', {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',

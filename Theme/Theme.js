@@ -2,7 +2,7 @@ import {Platform} from 'react-native';
 
 const fontFamily = fontName => {
   return Platform.select({
-    ios: fontName.replace(/_/g, ' '),
+    ios: fontName.replace(/_/g, '-'),
     android: fontName, // Use the original name for Android
   });
 };
