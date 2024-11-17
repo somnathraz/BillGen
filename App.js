@@ -14,6 +14,10 @@ import Home from './components/Home/Home';
 import {SafeAreaProvider} from 'react-native-safe-area-context';
 import {SnackbarProvider} from './context/SnackBarContext';
 import BusinessName from './components/UserOnboarding/BusinessName';
+import {UserProvider} from './context/UserContext';
+import BusinessIndustry from './components/UserOnboarding/BusinessIndustry';
+import BusinessType from './components/UserOnboarding/BusinessType';
+import LoadingScreen from './components/UserOnboarding/LoadingScreen';
 const Stack = createNativeStackNavigator();
 
 function App() {
@@ -38,28 +42,37 @@ function App() {
     {name: 'Login', component: Login, gestureEnabled: true},
     {name: 'BusinessName', component: BusinessName, gestureEnabled: true},
     {name: 'Home', component: Home, gestureEnabled: true},
+    {name: 'BusinessType', component: BusinessType, gestureEnabled: true},
+    {name: 'LoadingScreen', component: LoadingScreen, gestureEnabled: true},
+    {
+      name: 'BusinessIndustry',
+      component: BusinessIndustry,
+      gestureEnabled: true,
+    },
   ];
 
   return (
     <SafeAreaProvider>
-      <NavigationContainer>
-        <SnackbarProvider>
-          <Stack.Navigator
-            initialRouteName={initialRouteName}
-            screenOptions={{headerShown: false}}>
-            {screens.map((screen, index) => (
-              <Stack.Screen
-                key={index}
-                name={screen.name}
-                component={screen.component}
-                options={{
-                  gestureEnabled: screen.gestureEnabled,
-                }}
-              />
-            ))}
-          </Stack.Navigator>
-        </SnackbarProvider>
-      </NavigationContainer>
+      <UserProvider>
+        <NavigationContainer>
+          <SnackbarProvider>
+            <Stack.Navigator
+              initialRouteName={initialRouteName}
+              screenOptions={{headerShown: false}}>
+              {screens.map((screen, index) => (
+                <Stack.Screen
+                  key={index}
+                  name={screen.name}
+                  component={screen.component}
+                  options={{
+                    gestureEnabled: screen.gestureEnabled,
+                  }}
+                />
+              ))}
+            </Stack.Navigator>
+          </SnackbarProvider>
+        </NavigationContainer>
+      </UserProvider>
     </SafeAreaProvider>
   );
 }

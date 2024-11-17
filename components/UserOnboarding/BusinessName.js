@@ -11,9 +11,20 @@ import {
 } from 'react-native';
 import {SafeAreaView} from 'react-native-safe-area-context';
 import Theme from '../../Theme/Theme';
+import {useUserData} from '../../context/UserContext';
+import {useNavigation} from '@react-navigation/native';
 const {width, height} = Dimensions.get('window');
 const BusinessName = () => {
   const [nameInput, setNameInput] = useState('');
+  const navigation = useNavigation();
+  const {userData, setUserData} = useUserData();
+  const updateName = () => {
+    setUserData({
+      ...userData,
+      businessName: nameInput,
+    });
+    navigation.navigate('BusinessIndustry');
+  };
   return (
     <SafeAreaView style={styles.safeArea}>
       <View style={styles.container}>
@@ -40,7 +51,7 @@ const BusinessName = () => {
               },
             ]}
             disabled={nameInput === '' ? true : false}
-            onPress={() => console.log('pressed')}>
+            onPress={() => updateName()}>
             <Text style={styles.btnText}>Continue</Text>
           </Pressable>
         </View>
