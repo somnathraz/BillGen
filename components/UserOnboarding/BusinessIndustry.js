@@ -15,6 +15,7 @@ import {
 import Theme from '../../Theme/Theme';
 import {useNavigation} from '@react-navigation/native';
 import {useUserData} from '../../context/UserContext';
+import Progress from './ProgressBar';
 const {width, height} = Dimensions.get('window');
 const BusinessIndustry = () => {
   const [selectedIndustry, setSelectedIndustry] = useState(null);
@@ -178,7 +179,9 @@ const BusinessIndustry = () => {
   return (
     <SafeAreaView style={styles.safeArea}>
       <StatusBar barStyle="dark-content" backgroundColor="#fff" />
+
       <View style={styles.container}>
+        <Progress value={0.66} />
         <Text style={styles.heading}>Select Industry</Text>
         <TextInput
           style={styles.searchInput}

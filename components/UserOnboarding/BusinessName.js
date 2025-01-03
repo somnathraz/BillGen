@@ -13,6 +13,7 @@ import {SafeAreaView} from 'react-native-safe-area-context';
 import Theme from '../../Theme/Theme';
 import {useUserData} from '../../context/UserContext';
 import {useNavigation} from '@react-navigation/native';
+import Progress from './ProgressBar';
 const {width, height} = Dimensions.get('window');
 const BusinessName = () => {
   const [nameInput, setNameInput] = useState('');
@@ -28,11 +29,18 @@ const BusinessName = () => {
   return (
     <SafeAreaView style={styles.safeArea}>
       <View style={styles.container}>
+        <Progress value={0.33} />
         <StatusBar
           barStyle="dark-content"
           backgroundColor={Theme.colors.white}
         />
         <View style={styles.inputWrap}>
+          <Text style={styles.heading}>
+            Enter the business name you want to use
+          </Text>
+          <Text style={styles.desc}>
+            we will use it sho you customer for invoice and billing name.
+          </Text>
           <TextInput
             style={styles.input}
             placeholder="Enter your Business name"
@@ -66,9 +74,15 @@ const styles = StyleSheet.create({
   safeArea: {
     flex: 1,
     backgroundColor: Theme.colors.white,
+    alignItems: 'center',
   },
   container: {
     paddingHorizontal: (width * 5) / 100,
+    marginTop: (height * 5) / 100,
+  },
+  inputWrap: {
+    marginTop: (height * 10) / 100,
+    gap: 10,
   },
   input: {
     backgroundColor: Theme.colors.accent1,
@@ -89,7 +103,17 @@ const styles = StyleSheet.create({
     fontFamily: Theme.fonts.semiBold.fontFamily,
     fontWeight: Platform.OS === 'ios' ? '500' : 'normal',
   },
-  inputWrap: {
-    gap: 10,
+
+  heading: {
+    fontSize: width * 0.07,
+    fontWeight: 'bold',
+    marginBottom: 16,
+    fontFamily: Theme.fonts.semiBold.fontFamily,
+  },
+  desc: {
+    fontSize: width * 0.04,
+    color: Theme.colors.grey,
+    fontFamily: Theme.fonts.regular.fontFamily,
+    marginBottom: 16,
   },
 });

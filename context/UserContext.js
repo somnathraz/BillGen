@@ -7,7 +7,7 @@ export const UserProvider = ({children}) => {
     businessName: '',
     businessIndustry: '',
     businessType: '',
-    email: '',
+    business_email: '',
   });
 
   return (

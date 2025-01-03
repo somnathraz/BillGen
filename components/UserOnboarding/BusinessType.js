@@ -10,6 +10,7 @@ import {
 import {useNavigation} from '@react-navigation/native';
 import {useUserData} from '../../context/UserContext';
 import Theme from '../../Theme/Theme';
+import Progress from './ProgressBar';
 
 const BusinessType = () => {
   const [selectedType, setSelectedType] = useState(null);
@@ -28,18 +29,23 @@ const BusinessType = () => {
     setSelectedType(id);
     setUserData({...userData, businessType: name});
     navigation.navigate('LoadingScreen');
-    // Navigate to next screen if necessary
   };
 
   const renderBusinessType = ({item}) => (
     <TouchableOpacity
       key={item.id}
       onPress={() => handleTypeSelect(item.id, item.name)}
-      style={styles.typeItem}>
-      <View style={styles.radioCircle}>
-        {selectedType === item.id && <View style={styles.selectedRb} />}
-      </View>
-      <Text style={styles.typeName}>{item.name}</Text>
+      style={[
+        styles.card,
+        selectedType === item.id ? styles.selectedCard : null,
+      ]}>
+      <Text
+        style={[
+          styles.cardText,
+          selectedType === item.id ? styles.selectedText : null,
+        ]}>
+        {item.name}
+      </Text>
     </TouchableOpacity>
   );
 
@@ -47,8 +53,11 @@ const BusinessType = () => {
     <SafeAreaView style={styles.safeArea}>
       <StatusBar barStyle="dark-content" backgroundColor="#fff" />
       <View style={styles.container}>
+        <Progress value={1} />
         <Text style={styles.heading}>Select Business Type</Text>
-        {businessTypes.map(type => renderBusinessType({item: type}))}
+        <View style={styles.cardsContainer}>
+          {businessTypes.map(type => renderBusinessType({item: type}))}
+        </View>
       </View>
     </SafeAreaView>
   );
@@ -57,31 +66,35 @@ const BusinessType = () => {
 const styles = StyleSheet.create({
   safeArea: {flex: 1, backgroundColor: Theme.colors.white},
   container: {flex: 1, padding: 16, backgroundColor: '#fff'},
-  heading: {fontSize: 20, fontWeight: 'bold', marginBottom: 16},
-  typeItem: {
+  heading: {fontSize: 20, fontWeight: 'bold', marginBottom: 16, marginTop: 16},
+  cardsContainer: {
     flexDirection: 'row',
-    alignItems: 'center',
-    paddingVertical: 12,
-    borderBottomWidth: 1,
-    borderBottomColor: '#eee',
+    flexWrap: 'wrap',
+    justifyContent: 'space-between',
   },
-  radioCircle: {
-    height: 20,
-    width: 20,
+  card: {
+    width: '48%',
+    padding: 16,
     borderRadius: 10,
-    borderWidth: 2,
-    borderColor: '#2196f3',
+    backgroundColor: '#f5f5f5',
     alignItems: 'center',
-    justifyContent: 'center',
-    marginRight: 12,
+    marginBottom: 16,
+    borderWidth: 1,
+    borderColor: '#ddd',
   },
-  selectedRb: {
-    width: 10,
-    height: 10,
-    borderRadius: 5,
+  selectedCard: {
     backgroundColor: '#2196f3',
+    borderColor: '#2196f3',
   },
-  typeName: {fontSize: 16, fontWeight: '500'},
+  cardText: {
+    fontSize: 16,
+    color: '#333',
+    fontWeight: '500',
+  },
+  selectedText: {
+    color: '#fff',
+    fontWeight: '700',
+  },
 });
 
 export default BusinessType;

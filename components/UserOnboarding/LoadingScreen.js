@@ -4,20 +4,22 @@ import {View, StyleSheet, StatusBar, Dimensions, Text} from 'react-native';
 import {useNavigation} from '@react-navigation/native';
 import Theme from '../../Theme/Theme';
 import Progress from './ProgressBar';
+import {useUserData} from '../../context/UserContext';
 
-const {width, height} = Dimensions.get('window');
+const {width} = Dimensions.get('window');
 
 const LoadingScreen = () => {
   const navigation = useNavigation();
   const [slider, setSlider] = useState(0);
+  const {userData} = useUserData();
 
   useEffect(() => {
     const timerPromise = new Promise(resolve => {
-      const endTime = Date.now() + 5000; // Change to 5 seconds
+      const endTime = Date.now() + 4500;
       const timer = setInterval(() => {
         const now = Date.now();
         const timeLeft = Math.max(0, endTime - now);
-        const progress = 1 - timeLeft / 5000; // Change to 5 seconds
+        const progress = 1 - timeLeft / 3000;
         setSlider(progress);
 
         if (now >= endTime) {
@@ -26,11 +28,43 @@ const LoadingScreen = () => {
         }
       }, 100);
     });
+    // Define the API call as a promise
 
-    timerPromise.then(() => {
-      navigation.reset({index: 0, routes: [{name: 'Home'}]}); // Navigate to Main Screen
-    });
-  }, [navigation]);
+    const fetchUserData = async () => {
+      console.log(userData, 'from loading screens');
+
+      const response = await fetch(
+        'http://192.168.31.180:8000/business-profiles/',
+        {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json',
+          },
+          body: JSON.stringify({
+            business_name: userData.businessName,
+            business_industry: userData.businessIndustry,
+            business_type: userData.businessType,
+            business_phone: userData?.phoneNumber,
+            business_email: userData.business_email,
+          }),
+        },
+      );
+      const result = await response.json();
+      // console.log(result, 'result from backends');
+      return result;
+    };
+
+    Promise.all([timerPromise, fetchUserData()])
+      .then(([_, userDataResponse]) => {
+        console.log('User data sent and timer finished:', userDataResponse);
+        navigation.reset({index: 0, routes: [{name: 'Home'}]}); // Navigate to Main Screen
+        // AsyncStorage.setItem('userProfileStatus', 'true');
+      })
+      .catch(error => {
+        console.error('Error in processing:', error);
+        navigation.reset({index: 0, routes: [{name: 'Home'}]}); // Optionally handle errors differently
+      });
+  }, [navigation, userData]);
 
   return (
     <View style={styles.container}>
@@ -47,7 +81,9 @@ const LoadingScreen = () => {
         />
         <View style={styles.wrapper}>
           <View style={styles.contentwrapper}>
-            <Text>Transforming numbers into success, just a moment</Text>
+            <Text style={styles.text}>
+              Transforming numbers into success, just a moment
+            </Text>
           </View>
           <Progress value={slider} />
         </View>
@@ -81,5 +117,12 @@ const styles = StyleSheet.create({
     width: width * 0.75,
     flexDirection: 'column',
     alignItems: 'center',
+    justifyContent: 'center',
+  },
+  text: {
+    color: Theme.colors.black,
+    fontSize: (width * 4) / 100,
+    fontFamily: Theme.fonts.semiBold.fontFamily,
+    textAlign: 'center',
   },
 });

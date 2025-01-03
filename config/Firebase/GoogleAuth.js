@@ -29,9 +29,12 @@ export const SignInWithGoogle = async (
 
     const data = await auth().signInWithCredential(googleCredential);
     console.log(data, 'data from google');
-    setUserData({...userData, email: data.additionalUserInfo.profile.email});
+    setUserData({
+      ...userData,
+      business_email: data.additionalUserInfo.profile.email,
+    });
 
-    const response = await fetch('http://192.168.31.130:8000/users/', {
+    const response = await fetch('http://192.168.31.180:8000/users/', {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
@@ -41,6 +44,7 @@ export const SignInWithGoogle = async (
         username: data.user.displayName,
       }),
     });
+    console.log(response, 'response from backend');
 
     const result = await response.json();
     console.log(result, 'from backend');
@@ -61,7 +65,7 @@ export const SignInWithGoogle = async (
         index: 0,
         routes: [
           {
-            name: 'BusinessName',
+            name: 'Home',
           },
         ],
       });
